@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://d12waqt53mjnc"]
+
+[ext_resource type="Script" uid="uid://bffelydxi4asd" path="res://model_renamer.gd" id="1_jli6u"]
+[ext_resource type="PackedScene" uid="uid://b137uwh1kas46" path="res://assets/HoneyHead.glb" id="3_wkkme"]
+[ext_resource type="Texture2D" uid="uid://ch26jqcqedu2p" path="res://assets/blenter.png" id="4_bw0qo"]
+[ext_resource type="FontFile" uid="uid://jtf4lc2pp3jp" path="res://assets/NiseSegaSonic.TTF" id="5_bw0qo"]
+[ext_resource type="FontFile" uid="uid://byfmwb5nuijef" path="res://assets/ITCAvantGardePro-Bold.otf" id="5_wkkme"]
+[ext_resource type="Texture2D" uid="uid://b8q5842va6goj" path="res://assets/audio/stfchecker.png" id="7_mqb5u"]
+[ext_resource type="AudioStream" uid="uid://t3vsq31jbots" path="res://assets/audio/stf_all-034-knock_3.wav" id="7_rs0ty"]
+
+[sub_resource type="Environment" id="Environment_rs0ty"]
+ambient_light_source = 2
+ambient_light_color = Color(0.34781694, 0.34781697, 0.3478169, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fxfxe"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ModelRenamer" type="Control" unique_id=1220611841]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jli6u")
+
+[node name="BG" type="TextureRect" parent="." unique_id=2052216340]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1248.0
+offset_top = -1248.0
+offset_right = 1248.0
+offset_bottom = 1248.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_mqb5u")
+stretch_mode = 1
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1392657937]
+transparent_bg = true
+size = Vector2i(496, 384)
+
+[node name="HoneyHead" parent="SubViewport" unique_id=974790982 instance=ExtResource("3_wkkme")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=500079657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.8635416)
+fov = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=1254194374]
+environment = SubResource("Environment_rs0ty")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1676242442]
+transform = Transform3D(0.97105926, -0.22783446, -0.0716611, 0.2201037, 0.7371701, 0.6388541, -0.09272656, -0.636138, 0.765983, 0, 0, 0)
+
+[node name="BlenderLogo" type="Sprite3D" parent="SubViewport" unique_id=672203724]
+pixel_size = 0.015
+texture = ExtResource("4_bw0qo")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=861518832]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -192.0
+offset_right = 248.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_fxfxe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1324438373]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Header" type="Label" parent="VBoxContainer" unique_id=316060617]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6627451, 0.8901961, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 2.4065375e-08, 0.311359, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5_bw0qo")
+theme_override_font_sizes/font_size = 40
+text = "Drag & Drop "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Footer" type="Label" parent="VBoxContainer" unique_id=1070350435]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9019608, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("5_wkkme")
+theme_override_font_sizes/font_size = 24
+text = "TO SWAP NAMING SCHEME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=708234015]
+stream = ExtResource("7_rs0ty")
+volume_db = -30.0
